@@ -15,8 +15,40 @@ class ProductoController extends Controller
      */
     public function index()
     {
-        //
+        $productos = Productos::where('estatus', 1)->get();
+        return view('producto.index', ['productos' => $this->cargarDT($productos)]);
     }
+    private function cargarDT($consulta)
+    {
+        $productos = [];
+        foreach ($consulta as $key => $value) {
+            $actualizar = route('productos.edit', $value['id']);
+            $acciones = '
+           <div class="btn-acciones">
+               <div class="btn-circle">
+                   <a href="' . $actualizar . '" role="button" class="btn btn-success" title="Actualizar">
+                       <i class="far fa-edit"></i>
+                   </a>
+                    <a role="button" class="btn btn-danger" onclick="modal(' . $value['id'] . ')" data-bs-toggle="modal" data-bs-target="#exampleModal"">
+                       <i class="far fa-trash-alt"></i>
+                   </a>
+               </div>
+           </div>';
+
+
+            $productos[$key] = array(
+                $acciones,
+                $value['id'],
+                $value['nombre_p'],
+                $value['descripcion_p'],
+                $value['precio_p'],
+                $value['existencias_p'],
+                $value['sucursal_id'],
+            );
+        }
+        return $productos;
+    }
+
 
     public function create()
     {
@@ -48,9 +80,7 @@ class ProductoController extends Controller
             
     }
 
-    /**
-     * Display the specified resource.
-     */
+    
     public function show(string $id)
     {
         //
@@ -61,7 +91,12 @@ class ProductoController extends Controller
      */
     public function edit(string $id)
     {
-        //
+         //
+                    //Abre el formulario que permita editar un registro
+                    $productos = Productos::findOrFail($id);
+                    return view('producto.edit', array(
+                        'producto'=>$productos
+                    ));
     }
 
     /**
@@ -69,14 +104,56 @@ class ProductoController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        // Valida la información del formulario de edición
+        $this->validate($request, [
+            'nombre_p' => 'nullable|min:5',
+            'descripcion_p' => 'nullable',
+            'precio_p' => 'nullable|numeric',
+            'existencias_p' => 'nullable|integer',
+            'sucursal_id' => 'nullable|exists:Sucursales,id' // Verifica que la sucursal exista
+        ]);
+    
+        $producto = Productos::findOrFail($id);
+    
+        // Actualiza solo los campos que tienen valores en el formulario
+        if ($request->has('nombre_p') && $request->input('nombre_p') !== null) {
+            $producto->nombre_p = $request->input('nombre_p');
+        }
+        if ($request->has('descripcion_p') && $request->input('descripcion_p') !== null) {
+            $producto->descripcion_p = $request->input('descripcion_p');
+        }
+        if ($request->has('precio_p') && $request->input('precio_p') !== null) {
+            $producto->precio_p = $request->input('precio_p');
+        }
+        if ($request->has('existencias_p') && $request->input('existencias_p') !== null) {
+            $producto->existencias_p = $request->input('existencias_p');
+        }
+        if ($request->has('sucursal_id') && $request->input('sucursal_id') !== null) {
+            $producto->sucursal_id = $request->input('sucursal_id');
+        }
+    
+        // Guarda los cambios
+        $producto->save();
+    
+        // Redirige con un mensaje de éxito
+        return redirect()->route('productos.create')->with([
+            'message' => 'El producto se ha actualizado correctamente'
+        ]);
     }
+    
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function deleteProducto(string $producto_id)
     {
-        //
+        $producto = Productos::find($producto_id);
+        if ($producto) {
+            $producto->estatus = 0;
+            $producto->update();
+            return redirect()->route('productos.index')->with("message", "El producto se ha eliminado correctamente");
+        } else {
+            return redirect()->route('productos.index')->with("message", "LEl producto que trata de eliminar no existe");
+        }
     }
 }
