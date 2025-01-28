@@ -5,14 +5,11 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Productos;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Log;
 
 class ProductoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+ 
     public function index()
     {
         $productos = Productos::where('estatus', 1)->get();
@@ -34,7 +31,6 @@ class ProductoController extends Controller
                    </a>
                </div>
            </div>';
-
 
             $productos[$key] = array(
                 $acciones,
@@ -131,20 +127,13 @@ class ProductoController extends Controller
         if ($request->has('sucursal_id') && $request->input('sucursal_id') !== null) {
             $producto->sucursal_id = $request->input('sucursal_id');
         }
-    
-        // Guarda los cambios
         $producto->save();
-    
-        // Redirige con un mensaje de éxito
-        return redirect()->route('productos.create')->with([
+        return redirect()->route('productos.index')->with([
             'message' => 'El producto se ha actualizado correctamente'
         ]);
     }
     
-
-    /**
-     * Remove the specified resource from storage.
-     */
+    
     public function deleteProducto(string $producto_id)
     {
         $producto = Productos::find($producto_id);
@@ -153,7 +142,7 @@ class ProductoController extends Controller
             $producto->update();
             return redirect()->route('productos.index')->with("message", "El producto se ha eliminado correctamente");
         } else {
-            return redirect()->route('productos.index')->with("message", "LEl producto que trata de eliminar no existe");
+            return redirect()->route('productos.index')->with("message", "El producto que trata de eliminar no existe");
         }
     }
 }
