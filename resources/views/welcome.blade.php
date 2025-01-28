@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VITA</title>
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
@@ -62,6 +66,36 @@
         footer {
             margin-top: 2rem; /* Añadir espacio entre el contenido principal y el footer */
         }
+
+        /* Estilo para el contenedor de Catálogo */
+        .catalog-container {
+            margin-top: 3rem;
+            text-align: center;
+        }
+
+        /* Mapa y animación divididos en dos columnas */
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .map-container {
+            height: 400px;
+            flex: 1;
+        }
+
+        .animation-container {
+            height: 400px;
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .animation-container img {
+            max-width: 100%;
+            max-height: 100%;
+        }
     </style>
 </head>
 <body>
@@ -92,6 +126,13 @@
                     <p>Deja de gastar en calzado de mala calidad. En nuestra zapatería encontrarás los mejores precios y calidad. Esperamos tu visita.</p>
                 </div>
             </div>
+            <div class="col-md-5">
+                <div class="p-4 bg-light border rounded">
+                    <h2>Explora nuestro Catálogo</h2>
+                    <p>Descubre todos los productos disponibles en nuestra tienda.</p>
+                    <a href="{{ route('catalogo') }}" class="btn btn-primary">Ir al Catálogo</a>
+                </div>
+            </div>
         </div>
 
         <!-- Carrusel -->
@@ -116,6 +157,18 @@
                 <span class="visually-hidden">Siguiente</span>
             </button>
         </div>
+
+        <!-- Mapa y Animación Divididos -->
+        <div class="row">
+            <!-- Mapa -->
+            <div class="col-6 map-container" id="map"></div>
+
+            <!-- Animación Deportiva -->
+            <div class="col-6 animation-container">
+                <img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExbXQ0dHN0bXhpYjBnMGI5em12eGgwcXJwOHQ1ajdiNXJoMXYyNWppMiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/26tOZVUbYt7CFf2Xm/giphy.gif" alt="Animación Deportiva">
+            </div>
+        </div>
+
     </main>
 
     <!-- Footer -->
@@ -131,7 +184,28 @@
         </div>
     </footer>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Función para inicializar el mapa
+        function initMap() {
+            // Coordenadas de la zapatería
+            const ubicacion = { lat: 19.432608, lng: -99.133209 }; // Aquí pones la latitud y longitud reales
+    
+            // Crear el mapa y centrarlo en las coordenadas
+            const map = L.map('map').setView([ubicacion.lat, ubicacion.lng], 30); // Nivel de zoom 14
+    
+            // Agregar el mapa base de OpenStreetMap
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+    
+            // Agregar un marcador en la ubicación
+            L.marker([ubicacion.lat, ubicacion.lng]).addTo(map)
+                .bindPopup("<b>Zapatería Vita</b><br>Ubicación de nuestra tienda.")
+                .openPopup();
+        }
+    
+        // Llamar a la función para inicializar el mapa cuando se cargue la página
+        window.onload = initMap;
+    </script>
 </body>
 </html>

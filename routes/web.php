@@ -16,3 +16,7 @@ Route::get('/delete-producto/{producto_id}', [
     'middleware' => 'auth',
     'uses' => '\App\Http\Controllers\ProductoController@deleteProducto'
 ]);
+Route::get('/catalogo', function () {
+    // Asegúrate de tener una vista llamada catalogo
+    return view('catalogo'); 
+})->name('catalogo');
