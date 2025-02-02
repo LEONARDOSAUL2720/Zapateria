@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,7 +13,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         /* General styles */
-        html, body {
+        html,
+        body {
             height: 100%;
             margin: 0;
             display: flex;
@@ -24,7 +26,7 @@
             top: 0;
             z-index: 1030;
             background-color: #f8f9fa;
-            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+            box-shadow: 0px 20px 20px rgba(0, 0, 0, 0.1);
         }
 
         main {
@@ -49,22 +51,30 @@
 
         /* Carrusel customizado */
         .carousel-inner img {
-            max-width: 100%; /* Se asegura de que la imagen no se agrande más allá del ancho de su contenedor */
-            max-height: 350px; /* Limita la altura de las imágenes para que no sean demasiado grandes */
-            object-fit: contain; /* Se asegura de que la imagen se vea completa dentro del contenedor */
+            max-width: 100%;
+            /* Se asegura de que la imagen no se agrande más allá del ancho de su contenedor */
+            max-height: 450px;
+            /* Limita la altura de las imágenes para que no sean demasiado grandes */
+            object-fit: contain;
+            /* Se asegura de que la imagen se vea completa dentro del contenedor */
         }
 
         /* Separación y márgenes entre los elementos */
         .info-container {
-            margin-bottom: 2rem; /* Espacio debajo del contenedor de información */
+            margin-bottom: 10rem;
+            /* Espacio debajo del contenedor de información */
+            box-shadow: 30px 20px 20px rgba(0, 0, 0, 0.1);
         }
 
         .carousel {
-            margin-bottom: 2rem; /* Separación entre el carrusel y el contenido siguiente */
+            margin-bottom: 10rem;
+            /* Separación entre el carrusel y el contenido siguiente */
+
         }
 
         footer {
-            margin-top: 2rem; /* Añadir espacio entre el contenido principal y el footer */
+            margin-top: 2rem;
+            /* Añadir espacio entre el contenido principal y el footer */
         }
 
         /* Estilo para el contenedor de Catálogo */
@@ -74,23 +84,48 @@
         }
 
         /* Mapa y animación divididos en dos columnas */
+        /* Mapa y animación divididos en dos columnas */
         .row {
             display: flex;
             flex-wrap: wrap;
+
+        }
+
+        .row-map {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 10rem
         }
 
         .map-container {
-            height: 400px;
+            height: 350px;
             flex: 1;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            margin-bottom: 2rem;
+            margin-right: 2rem;
         }
 
         .animation-container {
-            height: 400px;
+            height: 350px;
             flex: 1;
             display: flex;
             justify-content: center;
             align-items: center;
+            background-color: #f0f0f0;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            margin-bottom: 1rem;
+            margin-right: 2rem;
+
         }
+
+        .animation-container img {
+            max-width: 80%;
+            max-height: 80%;
+            animation: zoomInOut 4s ease-in-out infinite;
+        }
+
 
         .animation-container img {
             max-width: 100%;
@@ -98,6 +133,7 @@
         }
     </style>
 </head>
+
 <body>
     <!-- Header fijo -->
     <header class="py-3">
@@ -116,21 +152,46 @@
         <div class="row info-container">
             <div class="col-md-7 mb-3">
                 <div class="p-4 bg-light border rounded">
-                    <h2>Zapatería de calzado deportivo</h2>
-                    <p>Te podrás encontrar con una gran variedad de calzado deportivo para toda la familia.</p>
+                    <h2>Zapatería de Calzado Deportivo</h2>
+                    <p>Encuentra una gran variedad de calzado deportivo para todas las edades y necesidades. Desde tenis
+                        para correr hasta calzado para actividades de alto rendimiento, tenemos todo lo que buscas.</p>
+                    <ul>
+                        <li><strong>Running:</strong> Tenis de alta resistencia para largas distancias.</li>
+                        <li><strong>Fútbol:</strong> Botas con tecnología de tracción avanzada.</li>
+                        <li><strong>Casual:</strong> Sneakers cómodos para el día a día.</li>
+                    </ul>
+                    <p><strong>Visítanos y prueba tu par ideal.</strong></p>
+
                 </div>
             </div>
             <div class="col-md-5">
                 <div class="p-4 bg-light border rounded">
-                    <h2>Los número 1 en calidad precio</h2>
-                    <p>Deja de gastar en calzado de mala calidad. En nuestra zapatería encontrarás los mejores precios y calidad. Esperamos tu visita.</p>
+                    <h2>Los número 1 en Calidad y Precio</h2>
+                    <p>Deja de gastar en calzado de mala calidad. En nuestra zapatería encontrarás los mejores precios
+                        con la garantía de un producto duradero y cómodo. ¡No más sacrificios entre calidad y precio!
+                    </p>
+                    <p><strong>Ofertas exclusivas:</strong> Descuentos de temporada y promociones especiales para
+                        miembros registrados.</p>
+                    <p><strong>Compra fácil:</strong> Compra en línea o visítanos en nuestra tienda física.</p>
+                    <p>¡Te esperamos con los mejores precios!</p>
+
                 </div>
             </div>
             <div class="col-md-5">
                 <div class="p-4 bg-light border rounded">
                     <h2>Explora nuestro Catálogo</h2>
-                    <p>Descubre todos los productos disponibles en nuestra tienda.</p>
+                    <p>Descubre todos nuestros productos disponibles y encuentra lo que más te gusta. ¡Explora calzado
+                        para deporte, fitness, moda y más!</p>
+                    <ul>
+                        <li><strong>Productos destacados:</strong> Tenis para running, zapatillas de fútbol y sneakers
+                            exclusivos.</li>
+                        <li><strong>Filtra por estilo y precio:</strong> Usa nuestros filtros avanzados para encontrar
+                            exactamente lo que buscas.</li>
+                    </ul>
                     <a href="{{ route('catalogo') }}" class="btn btn-primary">Ir al Catálogo</a>
+                    <p><strong>Oferta especial:</strong> Obtén un 10% de descuento en tu primer pedido al registrarte.
+                    </p>
+
                 </div>
             </div>
         </div>
@@ -159,13 +220,14 @@
         </div>
 
         <!-- Mapa y Animación Divididos -->
-        <div class="row">
+        <div class="row-map">
             <!-- Mapa -->
             <div class="col-6 map-container" id="map"></div>
 
             <!-- Animación Deportiva -->
             <div class="col-6 animation-container">
-                <img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExbXQ0dHN0bXhpYjBnMGI5em12eGgwcXJwOHQ1ajdiNXJoMXYyNWppMiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/26tOZVUbYt7CFf2Xm/giphy.gif" alt="Animación Deportiva">
+                <img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExbXQ0dHN0bXhpYjBnMGI5em12eGgwcXJwOHQ1ajdiNXJoMXYyNWppMiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/26tOZVUbYt7CFf2Xm/giphy.gif"
+                    alt="Animación Deportiva">
             </div>
         </div>
 
@@ -184,28 +246,35 @@
         </div>
     </footer>
 
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
     <script>
         // Función para inicializar el mapa
         function initMap() {
             // Coordenadas de la zapatería
-            const ubicacion = { lat: 19.432608, lng: -99.133209 }; // Aquí pones la latitud y longitud reales
-    
+            const ubicacion = {
+                lat: 19.432608,
+                lng: -99.133209
+            }; // Aquí pones la latitud y longitud reales
+
             // Crear el mapa y centrarlo en las coordenadas
             const map = L.map('map').setView([ubicacion.lat, ubicacion.lng], 30); // Nivel de zoom 14
-    
+
             // Agregar el mapa base de OpenStreetMap
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             }).addTo(map);
-    
+
             // Agregar un marcador en la ubicación
             L.marker([ubicacion.lat, ubicacion.lng]).addTo(map)
                 .bindPopup("<b>Zapatería Vita</b><br>Ubicación de nuestra tienda.")
                 .openPopup();
         }
-    
+
         // Llamar a la función para inicializar el mapa cuando se cargue la página
         window.onload = initMap;
     </script>
 </body>
+
 </html>

@@ -338,7 +338,7 @@ return [
             'url' => 'admin/settings',
             'icon' => 'fas fa-fw fa-lock',
         ],
-        
+        // productos
         [
             'text' => 'Productos',
             'icon' => 'fas fa-fw fa-user',
@@ -353,6 +353,22 @@ return [
                 ],
             ],
         ],
+        // sucursales
+        [
+            'text' => 'Sucursales',
+            'icon' => 'fas fa-fw fa-store',
+            'submenu' => [
+                [
+                    'text' => 'Listar',
+                    'route' => 'sucursales.index',
+                ],
+                [
+                    'text' => 'Crear',
+                    'route' => 'sucursales.create',
+                ],
+            ],
+        ],
+
 
         ['header' => 'account_settings'],
 

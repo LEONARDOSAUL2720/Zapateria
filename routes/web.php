@@ -16,7 +16,19 @@ Route::get('/delete-producto/{producto_id}', [
     'middleware' => 'auth',
     'uses' => '\App\Http\Controllers\ProductoController@deleteProducto'
 ]);
+
+Route::get('/delete-sucursal/{sucursal_id}', [
+    'as' => 'deleteSucursal',
+    'middleware' => 'auth',
+    'uses' => '\App\Http\Controllers\SucursalController@deleteSucursal'
+]);
+
+
+
 Route::get('/catalogo', function () {
     // Asegúrate de tener una vista llamada catalogo
     return view('catalogo'); 
 })->name('catalogo');
+
+Route::get('/imprimir', [App\Http\Controllers\GeneradorController::class, 'imprimir'])->name('imprimir');
+Route::get('/imprimirBD',[App\Http\Controllers\GeneradorController::class, 'imprimirBD'])->name('imprimirBD');
