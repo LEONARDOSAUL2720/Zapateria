@@ -32,3 +32,13 @@ Route::get('/catalogo', function () {
 
 Route::get('/imprimir', [App\Http\Controllers\GeneradorController::class, 'imprimir'])->name('imprimir');
 Route::get('/imprimirBD',[App\Http\Controllers\GeneradorController::class, 'imprimirBD'])->name('imprimirBD');
+
+Route::resource('asset', App\Http\Controllers\AssetController::class)->middleware('auth');
+Route::get('/video-file/{filename}', array(
+    'as' => 'fileVideo',
+    'uses' => 'App\Http\Controllers\VideoController@getVideo'
+ ));
+ Route::get('/miniatura/{filename}', array(
+    'as' => 'imageVideo',
+    'uses' => 'App\Http\Controllers\VideoController@getImage'
+ ));
