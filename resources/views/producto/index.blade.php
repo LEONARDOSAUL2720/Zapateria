@@ -21,9 +21,7 @@
             <br>
             <p align="right">
                 <a href="{{ route('productos.create') }}" class="btn btn-success">Crear Producto</a>
-                <a href="{{ route('home') }}" class="btn btn-primary">
-                    Regresar
-                </a>
+                <a href="{{ url('/') }}" class="btn btn-primary">Regresar</a>
             </p>
             <table id="example" class="table table-striped table-bordered" style="width:100%">
                 <thead>

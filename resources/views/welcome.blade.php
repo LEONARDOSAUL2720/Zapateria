@@ -140,6 +140,7 @@
         <div class="container d-flex justify-content-between align-items-center">
             <h1 class="h4 mb-0">VITA</h1>
             <div>
+                <a href="{{ route('nosotros') }}" class="btn btn-outline-secondary btn-sm me-2">Nosotros</a>
                 <a href="{{ route('login') }}" class="btn btn-outline-primary btn-sm me-2">Iniciar Sesión</a>
                 <a href="{{ route('register') }}" class="btn btn-primary btn-sm">Registrar</a>
             </div>

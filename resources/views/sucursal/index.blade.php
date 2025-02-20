@@ -22,7 +22,7 @@
             <br>
             <p align="right">
                 <a href="{{ route('sucursales.create') }}" class="btn btn-success">Crear Sucursal</a>
-                <a href="{{ route('home') }}" class="btn btn-primary">
+                <a href="{{ route('/') }}" class="btn btn-primary">
                     Regresar
                 </a>
             </p>

@@ -42,3 +42,7 @@ Route::get('/video-file/{filename}', array(
     'as' => 'imageVideo',
     'uses' => 'App\Http\Controllers\VideoController@getImage'
  ));
+
+Route::get('/nosotros', function () {
+    return view('nosotros');
+})->name('nosotros');
