@@ -23,12 +23,7 @@ Route::get('/delete-sucursal/{sucursal_id}', [
     'uses' => '\App\Http\Controllers\SucursalController@deleteSucursal'
 ]);
 
-
-
-Route::get('/catalogo', function () {
-    // Asegúrate de tener una vista llamada catalogo
-    return view('catalogo'); 
-})->name('catalogo');
+Route::get('/catalogo', [App\Http\Controllers\CatalogoController::class, 'index'])->name('catalogo');
 
 Route::get('/imprimir', [App\Http\Controllers\GeneradorController::class, 'imprimir'])->name('imprimir');
 Route::get('/imprimirBD',[App\Http\Controllers\GeneradorController::class, 'imprimirBD'])->name('imprimirBD');

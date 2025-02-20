@@ -9,47 +9,52 @@
     <style>
         .carousel-item img {
             height: 400px;
-            object-fit: cover;
+            object-fit: contain;
+            width: 100%;
+            margin-bottom: 10rem;
         }
         .carousel-caption {
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.7);
             padding: 20px;
             border-radius: 10px;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 10;
         }
         .carousel-control-prev-icon,
         .carousel-control-next-icon {
             background-color: black;
             border-radius: 50%;
         }
+        .carousel-caption h5, .carousel-caption p {
+            margin: 0;
+        }
+        .back-button {
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
 
 <div class="container mt-5">
+    <a href="{{ url('/') }}" class="btn btn-secondary back-button">Regresar</a>
     <h1 class="text-center mb-4">Catálogo de Zapatos</h1>
     <div id="productCarousel" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="ruta/a/imagen1.jpg" class="d-block w-100" alt="Zapato 1">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Zapato Deportivo</h5>
-                    <p>Medidas: 38, 39, 40, 41</p>
+            @foreach ($imagenes as $index => $imagen)
+                <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
+                    <img src="{{ asset('storage/' . $imagen) }}" class="d-block w-100" alt="Zapato {{ $index + 1 }}">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Zapato {{ $index + 1 }}</h5>
+                        <p>Medidas: 38, 39, 40, 41</p>
+                        <p>Precio: ${{ rand(1000, 3000) }}</p>
+                        <p>Color: {{ ['Rojo', 'Azul', 'Verde', 'Negro', 'Blanco'][array_rand(['Rojo', 'Azul', 'Verde', 'Negro', 'Blanco'])] }}</p>
+                        <p>Material: {{ ['Cuero', 'Sintético', 'Textil'][array_rand(['Cuero', 'Sintético', 'Textil'])] }}</p>
+                    </div>
                 </div>
-            </div>
-            <div class="carousel-item">
-                <img src="ruta/a/imagen2.jpg" class="d-block w-100" alt="Zapato 2">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Zapato Casual</h5>
-                    <p>Medidas: 37, 38, 39, 40</p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="ruta/a/imagen3.jpg" class="d-block w-100" alt="Zapato 3">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Zapato Formal</h5>
-                    <p>Medidas: 40, 41, 42, 43</p>
-                </div>
-            </div>
+            @endforeach
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#productCarousel" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>

@@ -24,15 +24,13 @@
             margin-bottom: 15px;
         }
         .back-button {
-            position: absolute;
-            top: 20px;
-            right: 20px;
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
-    <div class="container mt-5 position-relative">
-        <a href="{{ url()->previous() }}" class="btn btn-secondary back-button">Regresar</a>
+    <div class="container mt-5">
+        <a href="{{ url('/') }}" class="btn btn-secondary back-button">Regresar</a>
         <h1 class="text-center mb-4">Sobre Nosotros</h1>
         <div class="row">
             <div class="col-md-6">
